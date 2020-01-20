@@ -1,8 +1,10 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+
 /** Ionic CSS Variables **/
 :root {
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -74,4 +76,14 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+}
+
+@font-face {
+  font-family:'Opun';
+  src: url('/src/assets/fonts/opun_regular.ttf');
+  font-style: normal;
+  font-weight: 400;
+}
+p {
+  font-family: Opun !important;
 }

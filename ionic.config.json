@@ -1,5 +1,7 @@
 {
-  "name": "ionicTesseractJS",
-  "integrations": {},
+  "name": "ionic_tesseract_js",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

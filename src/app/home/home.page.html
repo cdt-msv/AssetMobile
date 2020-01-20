@@ -1,14 +1,126 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="secondary">
+      <ion-button (click)="presentAlert()">
+        <ion-icon slot="icon-only" name="logo-ionic"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      <!-- <ion-text color="light" style="text-align: center;">
+        
+      </ion-text> -->
+      <p>ระบบบริหารจัดการทรัพย์สิน</p>
+        
+      
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-    The world is your oyster.
+    <!-- The world is your oyster.
     <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+    <ion-button expand="full" (click)="takePhoto()">Take Photo</ion-button>
+    <ion-button expand="full" (click)="listen()">Listen</ion-button> -->
+    <!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">ชื่อ <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input #inputname required clear-input="true" type="text" [(ngModel)]='username'></ion-input>
+        <ion-button shape="round" color="light" slot="end" (click)="listenUsername()">
+          <ion-icon slot="icon-only" name="mic"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="stacked">นามสกุล <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input #inputlastname required clear-input="true" required type="text" oninput="handleLastNameValue(event)" [(ngModel)]='lastname'></ion-input>
+        <ion-button shape="round" color="light" slot="end" (click)="listenLastname()">
+          <ion-icon slot="icon-only" name="mic"></ion-icon>
+        </ion-button>
+      </ion-item>
+<!-- 
+      <ion-item>
+        <ion-label position="floating">ชื่อหัวข้อ</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">ที่อยู่</ion-label>
+        <ion-input placeholder="Address Line 1"></ion-input>
+        <ion-input placeholder="Address Line 2"></ion-input>
+        <ion-input placeholder="City"></ion-input>
+        <ion-input placeholder="State"></ion-input>
+        <ion-input placeholder="Zip Code"></ion-input>
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label position="stacked">บันทึก</ion-label>
+        <ion-button shape="round" color="light" slot="end" (click)="listenNote()">
+          <ion-icon slot="icon-only" name="mic"></ion-icon>
+        </ion-button>
+        <ion-textarea #inputnote [(ngModel)]='note'></ion-textarea>
+      </ion-item>
+
+    </ion-list>
+
+    
+
+
+    <!-- <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" style="margin-bottom: 40px;">
+      <ion-fab-button>
+        <ion-icon name="settings"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="start">
+        <ion-fab-button (click)="takePhoto()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="listen()"><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="listen()">
+          <ion-icon name="mic"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab> -->
+    <ion-card *ngIf="waiting">
+      <ion-card-header>
+        <ion-item>
+          <ion-label>กำลังประมวลผลภาพ...</ion-label>
+          <ion-spinner name="bubbles" color="secondary"></ion-spinner>
+        </ion-item>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card *ngIf="selectedImage">
+      <ion-card-header *ngIf="imageText">
+        ข้อความจากการประมวลผลภาพ: 
+        <ion-button shape="round" color="light" slot="end" (click)="readresult()">
+          <ion-icon slot="icon-only" name="volume-high"></ion-icon>
+        </ion-button>
+      </ion-card-header>
+      <ion-card-content *ngIf="imageText">
+        {{ imageText }}
+      </ion-card-content>
+      <img [src]="selectedImage" *ngIf="selectedImage">
+    </ion-card>
+
+    
+    <ion-input #inputhidden no-lines style="opacity: 0" type="text" value=""></ion-input>
+
+
+    
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark">
+    <div class="ion-padding">
+      <ion-button #cambutton expand="block" type="submit" class="ion-no-margin" (click)="takePhoto()">
+        กล้องถ่ายภาพ<ion-icon name="camera"></ion-icon>
+      </ion-button>
+      
+    </div>
+  </ion-toolbar>
+</ion-footer>
